@@ -25,6 +25,8 @@ button{
 
     margin-bottom:-9px;
     color:#f8f8f8;
+    text-shadow:
+    0 0 6px rgba(180, 220, 255, 0.35);
 
 }
 
