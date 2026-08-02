@@ -341,7 +341,7 @@ a {
 /*スマホ用サイズ合わせ*/
 /* ========================================
    スマホ版
-   PC版のデザインを同じ比率で縮小表示する
+   PC版をそのまま同じ比率で縮小する
 ======================================== */
 
 @media (max-width: 500px) {
@@ -356,126 +356,20 @@ a {
         overflow-y: auto;
     }
 
-    body {
-        position: relative;
-    }
-
-    /*
-      PC版の横幅：
-      container 600px + 左右padding 20pxずつ = 640px
-
-      iPhoneの表示幅に収めるため約0.58倍に縮小
-    */
     .container {
+        /* PC版の大きさを維持 */
         width: 600px;
-
-        margin: 0;
         padding: 20px;
+        margin: 0;
 
+        /* 全体を同じ比率で縮小 */
         transform: scale(0.58);
         transform-origin: top left;
 
-        /*
-          縮小後に中央へ寄せる
-          640px × 0.58 = 約371px
-        */
+        /* 縮小後の横幅をスマホ中央に置く */
         position: relative;
         left: 50%;
         margin-left: -185.6px;
-    }
-
-    /* PC版と同じく4つ横並び */
-    .menu {
-        display: flex;
-        justify-content: center;
-        gap:22px;
-
-        width: 100%;
-        margin-bottom: 28px;
-    }
-
-    .menu button {
-        width: 90px;
-        height: 60px;
-        flex: 0 0 90px;
-
-        color: #111;
-        -webkit-text-fill-color: #111;
-    }
-
-    /* PROFILEをPC版の小さいサイズに戻す */
-    .profile {
-        width: auto;
-        height: auto;
-
-        margin: 0;
-        padding: 2px 8px;
-
-        font-size: inherit;
-    }
-
-    /* キャラクターもPC版の配置を維持 */
-    .character {
-        margin: 40px;
-        font-size: 140px;
-        text-align: center;
-    }
-
-    /* 会話ウィンドウもPC版と同じ比率 */
-    .dialog {
-        width: 600px;
-        height: 280px;
-
-        margin: 0;
-
-        position: relative;
-        overflow: visible;
-    }
-
-    .dialog-titlebar {
-        height: 42px;
-        margin: 28px 22px 0;
-    }
-
-    .name {
-        top: -24px;
-        left: 38px;
-
-        width: 140px;
-        height: 55px;
-
-        padding: 0;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 24px;
-    }
-
-    #message {
-        height: 185px;
-
-        padding: 50px 42px 20px;
-        padding-top:56px;
-
-        font-size: 20px;
-        line-height: 1.55;
-
-        overflow: hidden;
-    }
-
-    .next-button {
-        top: 4px;
-        right: 5px;
-
-        width: 36px;
-        height: 34px;
-
-        font-size: 18px;
-
-        color: #111;
-        -webkit-text-fill-color: #111;
     }
 }
 }
