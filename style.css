@@ -387,7 +387,8 @@ a {
     /* PC版と同じく4つ横並び */
     .menu {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap:22px;
 
         width: 100%;
         margin-bottom: 28px;
@@ -455,7 +456,7 @@ a {
     #message {
         height: 185px;
 
-        padding: 34px 42px 24px;
+        padding: 50px 42px 24px;
 
         font-size: 20px;
         line-height: 1.55;
