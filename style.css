@@ -15,7 +15,7 @@ button{
 
 .container{
 
-    width:420px;
+    width:min(420px,92vw);
     margin:0 auto;
     padding:20px;
 
@@ -43,9 +43,10 @@ button{
 
 .menu{
 
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    width:100%;
 
 }
 
@@ -66,6 +67,12 @@ button{
 
 }
 
+.menu button {
+    width: 100%;
+    min-width: 0;
+    height: 74px;
+}
+
 .menu button:active{
 
     transform:translateY(4px);
@@ -76,7 +83,7 @@ button{
 
 
 .dialog {
-    width: 420px;
+    width: 100%;
     height: 180px;
 
     position: relative;
