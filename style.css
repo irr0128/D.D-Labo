@@ -180,7 +180,7 @@ button{
 #message {
     height: 190px;
 
-    padding: 38px 56px 28px 56px;
+    padding: 36px 56px 28px 56px;
 
     font-size: 18px;
     line-height: 1.7;
@@ -206,9 +206,9 @@ button{
 
 #message{
 
-    padding:22px 26px;
+    padding:10px 26px;
 
-    font: size 18px;
+    font-size: 18px;
 
     line-height:1.7;
 
