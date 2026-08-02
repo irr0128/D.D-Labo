@@ -317,8 +317,10 @@ button{
         width: 34px;
         height: 30px;
         font-size: 15px;
-    }
 }
+
+
+
 
 /*青文字を解消*/
 button {
@@ -337,6 +339,11 @@ a {
 }
 
 /*スマホ用サイズ合わせ*/
+/* ========================================
+   スマホ版
+   PC版のデザインを同じ比率で縮小表示する
+======================================== */
+
 @media (max-width: 500px) {
 
     html,
@@ -344,124 +351,97 @@ a {
         width: 100%;
         min-height: 100%;
         margin: 0;
+
         overflow-x: hidden;
         overflow-y: auto;
     }
 
-    * {
-        box-sizing: border-box;
+    body {
+        position: relative;
     }
 
+    /*
+      PC版の横幅：
+      container 600px + 左右padding 20pxずつ = 640px
+
+      iPhoneの表示幅に収めるため約0.58倍に縮小
+    */
     .container {
-        width: 92vw;
-        max-width: 600px;
-        min-height: 100dvh;
+        width: 600px;
 
-        margin: 0 auto;
-        padding:
-            max(18px, env(safe-area-inset-top))
-            0
-            max(24px, env(safe-area-inset-bottom));
-
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* 時計 */
-    .clock {
         margin: 0;
-        padding: 0;
+        padding: 20px;
+
+        transform: scale(0.58);
+        transform-origin: top left;
+
+        /*
+          縮小後に中央へ寄せる
+          640px × 0.58 = 約371px
+        */
+        position: relative;
+        left: 50%;
+        margin-left: -185.6px;
     }
 
-    .clock h1 {
-        margin: 0;
-        font-size: 52px;
-        line-height: 1;
-    }
-
-    .clock p {
-        margin: 6px 0 0;
-        font-size: 16px;
-        line-height: 1.2;
-    }
-
-    /* PROFILEを小さいまま維持 */
-    .profile {
-        width: auto;
-        min-width: 0;
-        height: 34px;
-
-        margin: 18px 0 0;
-        padding: 2px 14px;
-
-        align-self: flex-start;
-
-        font-size: 16px;
-        line-height: 1;
-
-        border-radius: 18px;
-    }
-
-    /* キャラクター */
-    .character {
-        min-height: 230px;
-
-        margin: 36px 0 28px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 120px;
-    }
-
-    /* 4ボタンを必ず横一列 */
+    /* PC版と同じく4つ横並び */
     .menu {
+        display: flex;
+        justify-content: space-between;
+
         width: 100%;
-
-        margin: 0 0 38px;
-
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
+        margin-bottom: 28px;
     }
 
     .menu button {
-        width: 100%;
-        min-width: 0;
-        height: 72px;
-
-        padding: 0 4px;
-
-        font-size: 15px;
+        width: 90px;
+        height: 60px;
+        flex: 0 0 90px;
 
         color: #111;
         -webkit-text-fill-color: #111;
     }
 
-    /* セリフ枠 */
+    /* PROFILEをPC版の小さいサイズに戻す */
+    .profile {
+        width: auto;
+        height: auto;
+
+        margin: 0;
+        padding: 2px 8px;
+
+        font-size: inherit;
+    }
+
+    /* キャラクターもPC版の配置を維持 */
+    .character {
+        margin: 40px;
+        font-size: 140px;
+        text-align: center;
+    }
+
+    /* 会話ウィンドウもPC版と同じ比率 */
     .dialog {
-        width: 100%;
-        height: 250px;
-        min-height: 250px;
+        width: 600px;
+        height: 280px;
 
-        margin: 0 0 24px;
+        margin: 0;
 
-        flex-shrink: 0;
+        position: relative;
         overflow: visible;
     }
 
     .dialog-titlebar {
-        height: 38px;
-        margin: 26px 14px 0;
+        height: 42px;
+        margin: 28px 22px 0;
     }
 
     .name {
-        top: -19px;
-        left: 18px;
+        top: -24px;
+        left: 38px;
 
-        width: 112px;
-        height: 48px;
+        width: 140px;
+        height: 55px;
 
         padding: 0;
 
@@ -469,15 +449,15 @@ a {
         align-items: center;
         justify-content: center;
 
-        font-size: 22px;
+        font-size: 24px;
     }
 
     #message {
-        height: 172px;
+        height: 185px;
 
-        padding: 32px 22px 16px;
+        padding: 34px 42px 24px;
 
-        font-size: 16px;
+        font-size: 20px;
         line-height: 1.55;
 
         overflow: hidden;
@@ -487,10 +467,10 @@ a {
         top: 4px;
         right: 5px;
 
-        width: 32px;
-        height: 30px;
+        width: 36px;
+        height: 34px;
 
-        font-size: 14px;
+        font-size: 18px;
 
         color: #111;
         -webkit-text-fill-color: #111;
