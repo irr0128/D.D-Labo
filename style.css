@@ -320,7 +320,7 @@ button{
     }
 }
 
-/*青文字を解消*/
+/*スマホの青文字を解消*/
 button {
     color: #111;
     -webkit-text-fill-color: #111;
@@ -336,3 +336,128 @@ a {
     text-decoration: none;
 }
 
+/*スマホ用サイズ合わせ*/
+@media (max-width: 500px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100%;
+        height: 100dvh;
+
+        padding:
+            max(18px, env(safe-area-inset-top))
+            20px
+            max(14px, env(safe-area-inset-bottom));
+
+        margin: 0;
+
+        display: grid;
+
+        /* 上部情報 / キャラ / メニュー / セリフ */
+        grid-template-rows:
+            auto
+            minmax(160px, 1fr)
+            auto
+            minmax(210px, 30vh);
+
+        gap: 14px;
+
+        overflow: hidden;
+    }
+
+    .clock {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clock h1 {
+        margin: 0;
+        font-size: clamp(42px, 13vw, 62px);
+        line-height: 1;
+    }
+
+    .clock p {
+        margin: 8px 0 0;
+        font-size: clamp(14px, 4vw, 18px);
+        line-height: 1.2;
+    }
+
+    .profile {
+        margin-top: 16px;
+    }
+
+    .character {
+        margin: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 0;
+        font-size: clamp(90px, 28vw, 150px);
+    }
+
+    .menu {
+        width: 100%;
+        margin: 0;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .menu button {
+        width: 100%;
+        height: clamp(62px, 10vh, 82px);
+
+        padding: 0;
+        font-size: clamp(17px, 5vw, 24px);
+    }
+
+    .dialog {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+
+        margin: 0;
+        overflow: visible;
+    }
+
+    .dialog-titlebar {
+        margin: 28px 14px 0;
+        height: 40px;
+    }
+
+    .name {
+        top: -20px;
+        left: 18px;
+
+        width: 120px;
+        height: 52px;
+
+        padding: 0;
+        font-size: 24px;
+    }
+
+    #message {
+        height: calc(100% - 70px);
+
+        padding: 34px 24px 16px;
+
+        font-size: clamp(15px, 4.2vw, 19px);
+        line-height: 1.6;
+
+        overflow: hidden;
+    }
+}
