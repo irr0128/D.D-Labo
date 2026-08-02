@@ -1,7 +1,7 @@
 body{
 
     margin:0;
-    background:white;
+    background:rgb(23, 23, 23);
     font-family:"DotGothic16",sans-serif;
     
     
@@ -23,13 +23,15 @@ button{
 
 .clock h1{
 
-    margin-bottom:5px;
+    margin-bottom:-9px;
+    color:#f8f8f8;
 
 }
 
 .clock p{
 
     margin-top:0;
+    color:#f8f8f8;
 
 }
 
@@ -104,10 +106,14 @@ button{
 /* 上の青いWindows風バー */
 .dialog-titlebar {
     height: 30px;
-
     margin: 12px 24px 0 24px;
 
-    background: #4965f1;
+    background:linear-gradient(
+        to right,
+        #0e0aee 0%,
+        #6f79ff 35%,
+        #dcecff 100%
+    );
 
     position: relative;
 
