@@ -58,7 +58,7 @@ button{
 
     background:#eeeeee;
 
-    border:3px solid gray;
+    border:1px solid gray;
 
     border-radius:10px;
 
@@ -90,7 +90,7 @@ button{
     position: relative;
 
     background: #f2f2f2;
-    border: 5px solid #a7a7a7;
+    border: 3px solid #c6c6c6;
 
     box-sizing: border-box;
 
@@ -105,9 +105,9 @@ button{
 .dialog-titlebar {
     height: 30px;
 
-    margin: 18px 24px 0 24px;
+    margin: 12px 24px 0 24px;
 
-    background: #1237e8;
+    background: #4965f1;
 
     position: relative;
 
@@ -153,14 +153,14 @@ button{
     position:absolute;
 
     top:-12px;
-    left: 15px;
+    left: 10px;
 
-    width:60px;
+    width: 60px;
     height:40px;
 
-    background:#e7ea72;
+    background:#ebec8c;
 
-    border:4px solid #9a9a9a;
+    border:2px solid #9e9fac;
 
     display:flex;
 
@@ -194,7 +194,7 @@ button{
 
 .name{
 
-    background:#e8ef88;
+    background:#ebec8c;
 
     width:120px;
 
@@ -249,6 +249,247 @@ button{
 
     font-family: inherit;
 
+}
+
+/* ========================================
+   右上のフォルダボタン
+======================================== */
+
+.container {
+    position: relative;
+}
+
+.side-actions {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    z-index: 50;
+}
+
+
+/* ========================================
+   フォルダ全体
+======================================== */
+
+.folder-button {
+    /* 各ボタンで上書きする色 */
+    --folder-color: #dce8f1;
+    --folder-highlight: #f4f9fc;
+
+    position: relative;
+
+    width: 80px;
+    height: 60px;
+    min-width: 80px;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    font-family: "DotGothic16", sans-serif;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* 記録の水色 */
+.folder-record {
+    --folder-color: #dce8f1;
+    --folder-highlight: #f4f9fc;
+}
+
+/* 観察の黄色 */
+.folder-observe {
+    --folder-color: #ebec8c;
+    --folder-highlight: #fafbdc;
+}
+
+
+/* ========================================
+   外側の輪郭
+======================================== */
+
+.folder-border {
+    position: absolute;
+    inset: 0;
+
+    background: #858585;
+
+    clip-path: polygon(
+        0 22%,
+        46% 22%,
+        55% 0,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    filter: drop-shadow(6px 6px 0 #b2b2b2);
+
+    z-index: 1;
+}
+
+
+/* ========================================
+   中に入っている白い紙
+======================================== */
+
+.folder-paper {
+    position: absolute;
+
+    top: 4px;
+    left: 8px;
+
+    width: 50px;
+    height: 40px;
+
+    background: #f5f5f5;
+    border: 1px solid #9b9b9b;
+
+    box-sizing: border-box;
+
+    z-index: 2;
+}
+
+
+/* ========================================
+   フォルダ内側の輪郭
+======================================== */
+
+/*
+  まず濃いグレーの形を置き、
+  その中へ色面をもう1枚重ねる。
+*/
+.folder-fill {
+    position: absolute;
+
+    top: 0.3px;
+    right: 0.3px;
+    bottom: 0.3px;
+    left: 0.3px;
+
+    background: #8e8e8e;
+
+    clip-path: polygon(
+        0 22%,
+        45% 22%,
+        54% 0,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 3;
+}
+
+/* 内側の色面 */
+.folder-fill::before {
+    content: "";
+
+    position: absolute;
+    inset: 1px;
+
+    background: var(--folder-color);
+
+    clip-path: polygon(
+        0 22%,
+        45% 22%,
+        54% 0,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    box-shadow:
+        inset 3px 3px 0 var(--folder-highlight),
+        inset -3px -3px 0 rgba(70, 70, 70, 0.16);
+}
+
+
+/* ========================================
+   文字とアイコン
+======================================== */
+
+.folder-content {
+    position: absolute;
+
+    /*
+      耳ではなく、正面の本体部分の中に配置
+    */
+    top: 25px;
+    right: 9px;
+    bottom: 7px;
+    left: 9px;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    /* 縦書き・改行を禁止 */
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+}
+
+.folder-label {
+    display: inline-block;
+
+    font-size: 15px;
+    line-height: 1;
+
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+
+    flex: 0 0 auto;
+
+    color: #111;
+    -webkit-text-fill-color: #111;
+}
+
+.folder-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    flex: 0 0 auto;
+
+    color: #111;
+    -webkit-text-fill-color: #111;
+
+    transform: rotate(-12deg);
+}
+
+
+/* ========================================
+   押したとき
+======================================== */
+
+.folder-button:active {
+    transform: translate(5px, 5px);
+}
+
+.folder-button:active .folder-border {
+    filter: drop-shadow(1px 1px 0 #888);
 }
 
 /* cssの一番下に追加してください */
