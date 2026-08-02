@@ -341,134 +341,83 @@ a {
 
     html,
     body {
+        margin: 0;
         width: 100%;
         min-height: 100%;
-        margin: 0;
-
         overflow-x: hidden;
         overflow-y: auto;
     }
 
-    * {
-        box-sizing: border-box;
-    }
-
+    /*
+      PC版の基準幅が600pxなので、
+      スマホ画面幅に合わせて全体を一括縮小する
+    */
     .container {
-        width: 92vw;
-        max-width: 600px;
+        width: 600px;
 
-        margin: 0 auto;
-
-        padding:
-            max(18px, env(safe-area-inset-top))
-            0
-            calc(90px + env(safe-area-inset-bottom));
-
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* 時計と日付 */
-    .clock {
         margin: 0;
-        padding: 0;
+        padding: 20px;
+
+        transform-origin: top left;
+        transform: scale(calc(100vw / 640));
+
+        /*
+          scaleすると見た目だけ縮んで、
+          元の高さ分の空白が残るので補正
+        */
+        min-height: calc(100dvh * (640 / 100vw));
     }
 
-    .clock h1 {
-        margin: 0;
-
-        font-size: 52px;
-        line-height: 1;
-    }
-
-    .clock p {
-        margin: 6px 0 0;
-
-        font-size: 16px;
-        line-height: 1.2;
-    }
-
-    /* PROFILE */
-    .profile {
-        width: auto;
-        min-width: 0;
-        height: 34px;
-
-        margin: 18px 0 0;
-        padding: 2px 14px;
-
-        align-self: flex-start;
-
-        font-size: 16px;
-        line-height: 1;
-
-        border-radius: 18px;
-    }
-
-    /* キャラクター */
-    .character {
-        height: 250px;
-        min-height: 0;
-
-        margin: 18px 0 20px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 112px;
-    }
-
-    /* メニューボタン4つを横一列 */
+    /* PC版の4列をそのまま維持 */
     .menu {
-        width: 100%;
-
-        margin: 0 0 36px;
-
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
+        display: flex;
+        justify-content: space-between;
+        gap: 0;
+        margin-bottom: 28px;
     }
 
     .menu button {
-        width: 100%;
-        min-width: 0;
-        height: 70px;
-
-        padding: 0 3px;
-
-        font-size: 15px;
+        width: 90px;
+        height: 60px;
+        flex: none;
 
         color: #111;
         -webkit-text-fill-color: #111;
     }
 
-    /* セリフ枠 */
+    /* PROFILEもPC版サイズへ戻す */
+    .profile {
+        width: auto;
+        height: auto;
+        min-width: 0;
+
+        padding: 2px 8px;
+        margin-top: 18px;
+
+        align-self: auto;
+    }
+
+    /* セリフ枠もPC版サイズをそのまま使用 */
     .dialog {
-        width: 100%;
-        height: 220px;
-        min-height: 220px;
+        width: 600px;
+        height: 280px;
+        min-height: 0;
 
         margin: 0;
-
-        flex-shrink: 0;
         overflow: visible;
     }
 
-    /* 青いタイトルバー */
     .dialog-titlebar {
-        height: 36px;
-
-        margin: 25px 14px 0;
+        height: 42px;
+        margin: 28px 22px 0;
     }
 
-    /* 名前プレート */
     .name {
-        top: -18px;
-        left: 18px;
+        top: -24px;
+        left: 38px;
 
-        width: 112px;
-        height: 47px;
+        width: 140px;
+        height: 55px;
 
         padding: 0;
 
@@ -476,42 +425,30 @@ a {
         align-items: center;
         justify-content: center;
 
-        font-size: 22px;
+        font-size: 24px;
     }
 
-    /* セリフ本文 */
     #message {
-        height: 145px;
+        height: 185px;
 
-        padding: 27px 22px 12px;
+        padding: 34px 42px 24px;
 
-        font-size: 15px;
+        font-size: 20px;
         line-height: 1.55;
 
         overflow: hidden;
     }
 
-    /* 次へボタン */
     .next-button {
-        top: 3px;
+        top: 4px;
         right: 5px;
 
-        width: 31px;
-        height: 29px;
+        width: 36px;
+        height: 34px;
 
-        padding: 0;
-
-        font-size: 14px;
+        font-size: 18px;
 
         color: #111;
         -webkit-text-fill-color: #111;
-    }
-
-    /* タイピングカーソル */
-    #typing-cursor {
-        width: 3px;
-        height: 1.05em;
-
-        margin-left: 3px;
     }
 }
