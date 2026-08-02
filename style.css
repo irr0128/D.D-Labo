@@ -340,67 +340,90 @@ a {
 @media (max-width: 500px) {
 
     html,
-    body {
-        margin: 0;
-        width: 100%;
-        min-height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+body {
+    margin: 0;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
-    /*
-      PC版の基準幅が600pxなので、
-      スマホ画面幅に合わせて全体を一括縮小する
-    */
     .container {
-        width: 600px;
+        width: 100%;
+        height: 100dvh;
+
+        padding:
+            max(18px, env(safe-area-inset-top))
+            20px
+            max(14px, env(safe-area-inset-bottom));
 
         margin: 0;
-        padding: 20px;
 
-        transform-origin: top left;
-        transform: scale(calc(100vw / 640));
+        display: grid;
 
-        /*
-          scaleすると見た目だけ縮んで、
-          元の高さ分の空白が残るので補正
-        */
-        min-height: calc(100dvh * (640 / 100vw));
+        /* 上部情報 / キャラ / メニュー / セリフ */
+        grid-template-rows:
+            auto
+            minmax(160px, 1fr)
+            auto
+            minmax(210px, 30vh);
+
+        gap: 14px;
+
+        overflow: hidden;
     }
 
-    /* PC版の4列をそのまま維持 */
-    .menu {
+    .clock {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clock h1 {
+        margin: 0;
+        font-size: clamp(42px, 13vw, 62px);
+        line-height: 1;
+    }
+
+    .clock p {
+        margin: 8px 0 0;
+        font-size: clamp(14px, 4vw, 18px);
+        line-height: 1.2;
+    }
+
+    .profile {
+        margin-top: 16px;
+    }
+
+    .character {
+        margin: 0;
+
         display: flex;
-        justify-content: space-between;
-        gap: 0;
-        margin-bottom: 28px;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 0;
+        font-size: clamp(90px, 28vw, 150px);
+    }
+
+    .menu {
+        width: 100%;
+        margin: 0;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .menu button {
-        width: 90px;
-        height: 60px;
-        flex: none;
+        width: 100%;
+        height: clamp(62px, 10vh, 82px);
 
-        color: #111;
-        -webkit-text-fill-color: #111;
+        padding: 0;
+        font-size: clamp(17px, 5vw, 24px);
     }
 
-    /* PROFILEもPC版サイズへ戻す */
-    .profile {
-        width: auto;
-        height: auto;
-        min-width: 0;
-
-        padding: 2px 8px;
-        margin-top: 18px;
-
-        align-self: auto;
-    }
-
-    /* セリフ枠もPC版サイズをそのまま使用 */
     .dialog {
-        width: 600px;
-        height: 280px;
+        width: 100%;
+        height: 100%;
         min-height: 0;
 
         margin: 0;
@@ -408,47 +431,29 @@ a {
     }
 
     .dialog-titlebar {
-        height: 42px;
-        margin: 28px 22px 0;
+        margin: 28px 14px 0;
+        height: 40px;
     }
 
     .name {
-        top: -24px;
-        left: 38px;
+        top: -20px;
+        left: 18px;
 
-        width: 140px;
-        height: 55px;
+        width: 120px;
+        height: 52px;
 
         padding: 0;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
         font-size: 24px;
     }
 
     #message {
-        height: 185px;
+        height: calc(100% - 70px);
 
-        padding: 34px 42px 24px;
+        padding: 34px 24px 16px;
 
-        font-size: 20px;
-        line-height: 1.55;
+        font-size: clamp(15px, 4.2vw, 19px);
+        line-height: 1.6;
 
         overflow: hidden;
-    }
-
-    .next-button {
-        top: 4px;
-        right: 5px;
-
-        width: 36px;
-        height: 34px;
-
-        font-size: 18px;
-
-        color: #111;
-        -webkit-text-fill-color: #111;
     }
 }
