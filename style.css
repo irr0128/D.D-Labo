@@ -250,3 +250,89 @@ button{
     font-family: inherit;
 
 }
+
+/* cssの一番下に追加してください */
+@media (max-width: 500px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 92vw;
+        padding-top: 18px;
+    }
+
+    .clock h1 {
+        font-size: 42px;
+    }
+
+    .clock p {
+        font-size: 15px;
+    }
+
+    .character {
+        font-size: 110px;
+        margin: 54px 0 40px;
+    }
+
+    .menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .menu button {
+        height: 62px;
+        font-size: 17px;
+    }
+
+    .dialog {
+        width: 100%;
+        height: 250px;
+    }
+
+    .dialog-titlebar {
+        margin: 24px 14px 0;
+        height: 38px;
+    }
+
+    .name {
+        top: -20px;
+        left: 18px;
+
+        width: 112px;
+        height: 48px;
+
+        font-size: 21px;
+    }
+
+    #message {
+        height: 170px;
+        padding: 28px 24px 20px;
+
+        font-size: 17px;
+        line-height: 1.65;
+    }
+
+    .next-button {
+        width: 34px;
+        height: 30px;
+        font-size: 15px;
+    }
+}
+
+/*青文字を解消*/
+button {
+    color: #111;
+    -webkit-text-fill-color: #111;
+}
+
+.next-button {
+    color: #111;
+    -webkit-text-fill-color: #111;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
