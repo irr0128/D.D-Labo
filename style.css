@@ -338,12 +338,12 @@ a {
 
 /*スマホ用サイズ合わせ*/
 @media (max-width: 500px) {
+
     html,
     body {
         width: 100%;
         min-height: 100%;
         margin: 0;
-
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -353,113 +353,146 @@ a {
     }
 
     .container {
-        width: 100%;
+        width: 92vw;
+        max-width: 600px;
         min-height: 100dvh;
-        height: auto;
 
-        margin: 0;
+        margin: 0 auto;
         padding:
             max(18px, env(safe-area-inset-top))
-            20px
+            0
             max(24px, env(safe-area-inset-bottom));
 
         display: flex;
         flex-direction: column;
-        gap: 18px;
-
-        overflow: visible;
     }
 
+    /* 時計 */
     .clock {
         margin: 0;
+        padding: 0;
     }
 
     .clock h1 {
         margin: 0;
-        font-size: clamp(44px, 13vw, 62px);
+        font-size: 52px;
         line-height: 1;
     }
 
     .clock p {
-        margin: 8px 0 0;
+        margin: 6px 0 0;
         font-size: 16px;
         line-height: 1.2;
     }
 
+    /* PROFILEを小さいまま維持 */
     .profile {
         width: auto;
-        height: 38px;
-        margin-top: 12px;
+        min-width: 0;
+        height: 34px;
+
+        margin: 18px 0 0;
+        padding: 2px 14px;
+
         align-self: flex-start;
+
+        font-size: 16px;
+        line-height: 1;
+
+        border-radius: 18px;
     }
 
+    /* キャラクター */
     .character {
-        min-height: 180px;
-        margin: 10px 0 0;
+        min-height: 230px;
+
+        margin: 36px 0 28px;
 
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
 
-        font-size: clamp(96px, 30vw, 145px);
+        font-size: 120px;
     }
 
+    /* 4ボタンを必ず横一列 */
     .menu {
         width: 100%;
-        margin: 0 0 34px;
+
+        margin: 0 0 38px;
 
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
     }
 
     .menu button {
         width: 100%;
-        height: 78px;
+        min-width: 0;
+        height: 72px;
+
+        padding: 0 4px;
+
+        font-size: 15px;
+
+        color: #111;
+        -webkit-text-fill-color: #111;
+    }
+
+    /* セリフ枠 */
+    .dialog {
+        width: 100%;
+        height: 250px;
+        min-height: 250px;
+
+        margin: 0 0 24px;
+
+        flex-shrink: 0;
+        overflow: visible;
+    }
+
+    .dialog-titlebar {
+        height: 38px;
+        margin: 26px 14px 0;
+    }
+
+    .name {
+        top: -19px;
+        left: 18px;
+
+        width: 112px;
+        height: 48px;
+
         padding: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         font-size: 22px;
     }
 
-    .dialog {
-        width: 100%;
-        height: 270px;
-        min-height: 270px;
-
-        margin: 0;
-        overflow: visible;
-        flex-shrink: 0;
-    }
-
-    .dialog-titlebar {
-        height: 40px;
-        margin: 28px 14px 0;
-    }
-
-    .name {
-        top: -20px;
-        left: 18px;
-
-        width: 120px;
-        height: 52px;
-
-        padding: 0;
-        font-size: 24px;
-    }
-
     #message {
-        height: 185px;
-        padding: 34px 24px 18px;
+        height: 172px;
 
-        font-size: 17px;
-        line-height: 1.6;
+        padding: 32px 22px 16px;
+
+        font-size: 16px;
+        line-height: 1.55;
 
         overflow: hidden;
     }
 
     .next-button {
-        width: 34px;
+        top: 4px;
+        right: 5px;
+
+        width: 32px;
         height: 30px;
-        font-size: 15px;
+
+        font-size: 14px;
+
+        color: #111;
+        -webkit-text-fill-color: #111;
     }
 }
