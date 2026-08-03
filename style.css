@@ -34,6 +34,8 @@ button{
 
     margin-top:0;
     color:#f8f8f8;
+     text-shadow:
+    0 0 6px rgba(180, 220, 255, 0.35);
 
 }
 
@@ -85,7 +87,6 @@ button{
     box-shadow:none;
 
 }
-
 
 .dialog {
     width: 100%;
@@ -155,7 +156,7 @@ button{
     transform: translate(1px, 1px);
 }
 
-/* 左上に重なる名前プレート */
+/*左上に重なる名前プレート*/
 .name{
 
     position:absolute;
@@ -184,7 +185,7 @@ button{
 
 }
 
-/* セリフ本文 */
+/*セリフ本文*/
 #message {
     height: 190px;
 
@@ -259,10 +260,7 @@ button{
 
 }
 
-/* ========================================
-   右上のフォルダボタン
-======================================== */
-
+/*右上のフォルダボタン*/
 .container {
     position: relative;
 }
@@ -280,10 +278,7 @@ button{
 }
 
 
-/* ========================================
-   フォルダ全体
-======================================== */
-
+/*フォルダ全体*/
 .folder-button {
     /* 各ボタンで上書きする色 */
     --folder-color: #dce8f1;
@@ -307,23 +302,19 @@ button{
     -webkit-appearance: none;
 }
 
-/* 記録の水色 */
+/*記録の水色*/
 .folder-record {
     --folder-color: #dce8f1;
     --folder-highlight: #f4f9fc;
 }
 
-/* 観察の黄色 */
+/*観察の黄色*/
 .folder-observe {
     --folder-color: #ebec8c;
     --folder-highlight: #fafbdc;
 }
 
-
-/* ========================================
-   外側の輪郭
-======================================== */
-
+/*外側の輪郭*/
 .folder-border {
     position: absolute;
     inset: 0;
@@ -344,11 +335,7 @@ button{
     z-index: 1;
 }
 
-
-/* ========================================
-   中に入っている白い紙
-======================================== */
-
+/*中に入っている白い紙*/
 .folder-paper {
     position: absolute;
 
@@ -366,15 +353,7 @@ button{
     z-index: 2;
 }
 
-
-/* ========================================
-   フォルダ内側の輪郭
-======================================== */
-
-/*
-  まず濃いグレーの形を置き、
-  その中へ色面をもう1枚重ねる。
-*/
+/*フォルダ内側の輪郭*/
 .folder-fill {
     position: absolute;
 
@@ -420,17 +399,11 @@ button{
         inset -3px -3px 0 rgba(70, 70, 70, 0.16);
 }
 
-
-/* ========================================
-   文字とアイコン
-======================================== */
-
+/*文字とアイコン*/
 .folder-content {
     position: absolute;
 
-    /*
-      耳ではなく、正面の本体部分の中に配置
-    */
+/*正面の本体部分の中に配置*/
     top: 25px;
     right: 9px;
     bottom: 7px;
@@ -487,11 +460,7 @@ button{
     transform: rotate(-12deg);
 }
 
-
-/* ========================================
-   押したとき
-======================================== */
-
+ /*押したとき*/
 .folder-button:active {
     transform: translate(5px, 5px);
 }
@@ -500,7 +469,218 @@ button{
     filter: drop-shadow(1px 1px 0 #888);
 }
 
-/* cssの一番下に追加してください */
+.profile-note {
+    position: relative;
+
+    width: 80px;
+    height: 60px;
+
+    margin-top: px;
+    padding: 0;
+
+    background: #f4f3f8;
+    border: 1px solid #8a8992;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        3px 3px 0 #a2a1aa,
+        inset 3px 3px 0 #ffffff,
+        inset -3px -3px 0 #d0cfd7;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "DotGothic16", sans-serif;
+    color: #111;
+
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* 上部リング */
+.profile-note::before {
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    left: 10px;
+    right: 10px;
+
+    height: 15px;
+
+    pointer-events: none;
+    z-index:4;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 8px,
+            #777680 8px 12px,
+            transparent 12px 18px
+        );
+
+    z-index: index 6;
+}
+
+/*リング下の穴*/
+.profile-note::after {
+    content: "";
+
+    position: absolute;
+
+    top: 7.5px;
+    left: 10px;
+    right: 10px;
+
+    height: 4px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 7px,
+            #333334 7px 13px,
+            transparent 13px 18px
+        );
+
+    border-bottom: 1px solid #8a8992;
+
+    z-index: 1;
+}
+
+.profile-note span {
+    position: relative;
+    z-index: 3;
+
+    font-size: 15px;
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+.profile-note:active {
+    transform: translate(4px, 4px);
+
+    box-shadow:
+        1px 1px 0 #777680,
+        inset 1px 1px 0 #c5c4cc,
+        inset -3px -3px 0 #ffffff;
+}
+
+/*試験管型レベルメーター*/
+.level-meter {
+    position: absolute;
+
+    /*観察ファイル右下*/
+    top: 175px;
+    right: 2px;
+
+    width: 70px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 30;
+}
+
+/*本体*/
+.level-tube {
+    position: relative;
+
+    width: 25px;
+    height: 160px;
+
+    overflow: visible;
+
+    background: rgba(235, 242, 248, 0.28);
+
+    border: 1px solid #8b8993;
+    border-top: 1px solid #8b8993;
+
+    border-radius: 4px 4px 24px 24px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        inset 5px 0 0 rgba(255, 255, 255, 0.55),
+        inset -5px 0 0 rgba(105, 115, 130, 0.16),
+        3px 3px 0 rgba(110, 110, 120, 0.35);
+
+    backdrop-filter: blur(1px);
+}
+
+/*中の液体*/
+.level-liquid {
+    position: absolute;
+
+    left: 6px;
+    right: 5px;
+    bottom: 5px;
+
+    /*今は仮で33%*/
+    height: 33%;
+
+    background: #9f9cff;
+
+    border-radius: 0 0 17px 17px;
+
+    z-index: 1;
+
+    transition: height 0.5s ease;
+}
+
+/*目盛り*/
+.level-marks {
+    position: absolute;
+
+    top: 10px;
+    right: 4px;
+    bottom: 10px;
+
+    width: 17px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+.level-marks span {
+    position:relative;
+    z-index:20;
+    display: block;
+
+    width: 12px;
+    height: 3px;
+
+    background: #d8d8d8;
+}
+
+.level-marks span:nth-child(2n) {
+    width: 8px;
+    margin-left: 4px;
+}
+
+/*レベル表示*/
+.level-label {
+    margin-top: 5px;
+
+    font-family: "DotGothic16", sans-serif;
+    font-size: 15px;
+    line-height: 1;
+
+    color: #fefefe;
+
+    white-space: nowrap;
+}
+
+/*スマホ用*/
 @media (max-width: 500px) {
     body {
         overflow-x: hidden;
@@ -568,9 +748,6 @@ button{
         font-size: 15px;
 }
 
-
-
-
 /*青文字を解消*/
 button {
     color: #111;
@@ -587,11 +764,6 @@ a {
     text-decoration: none;
 }
 
-/*スマホ用サイズ合わせ*/
-/* ========================================
-   スマホ版
-   PC版をそのまま同じ比率で縮小する
-======================================== */
 
 @media (max-width: 500px) {
 
