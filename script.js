@@ -1,20 +1,18 @@
 "use strict";
 
-// ================================
 // 時計と日付
-// ================================
-
 function updateClock() {
     const now = new Date();
 
     const hours = String(now.getHours()).padStart(2, "0");
     const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
 
     const timeElement = document.getElementById("time");
     const dateElement = document.getElementById("date");
 
     if (timeElement) {
-        timeElement.textContent = `${hours}:${minutes}`;
+        timeElement.textContent = `${hours}:${minutes}:${seconds}`;
     }
 
     if (dateElement) {
@@ -30,26 +28,7 @@ updateClock();
 setInterval(updateClock, 1000);
 
 
-// ================================
 // 時間帯別セリフ
-// ================================
-
-/*
-  外側の [] ＝ セリフ候補
-  内側の [] ＝ ▶で連続して表示するひとまとまり
-
-  例：
-  [
-      [
-          "1ページ目",
-          "2ページ目"
-      ],
-      [
-          "別のセリフ候補"
-      ]
-  ]
-*/
-
 const morningMessages = [
     [
         "おはようございます。よく来てくださいました。",
@@ -66,8 +45,7 @@ const morningMessages = [
         "……ですので、昨日うまくいかなかったことを今日まで引きずる必要はありません。"
     ],
     [
-        "朝食は食べましたか？脳は意外と燃費が悪いんですよ。",
-        "あなたの思考が途中で止まると、私も少し困ります。"
+        "朝食は食べましたか？脳は意外と燃費が悪いんですよ。あなたの思考が途中で止まると、私も少し困ります。"
     ],
     [
         "あなたは朝が好きですか？……私はあまり。ですが、太陽に文句を言っても昇るものは昇りますからね。"
@@ -170,7 +148,7 @@ const commonMessages = [
         "人間は、気になるという理由だけで未知へ向かえます。非効率で、美しい性質ですね。"
     ],
     [
-        "あなたの今日の記録を見ていました。ふと『記録される側』の気持ちになってみたんです。……落ち着きませんでした。"
+        "あなたの今日の記録を見ていました。ふと「記録される側」の気持ちになってみたんです。……落ち着きませんでした。"
     ],
     [
         "あなたはプリンのカラメルを最初に食べますか？……いえ、研究とは関係ありません。ちょっと気になっただけです。"
@@ -229,11 +207,7 @@ const commonMessages = [
 ];
 
 
-
-// ================================
 // 現在の時間帯を判定
-// ================================
-
 function getCurrentMessages() {
     const now = new Date();
     const time = now.getHours() * 60 + now.getMinutes();
@@ -263,10 +237,7 @@ function getCurrentMessages() {
 }
 
 
-// ================================
 // セリフ表示の状態
-// ================================
-
 let currentConversation = [];
 let lastConversation = null;
 let pageIndex = 0;
@@ -281,19 +252,16 @@ const typingSpeed = 45;
 const messageTextElement = document.getElementById("message-text");
 const cursorElement = document.getElementById("typing-cursor");
 const nextButton = document.getElementById("next");
+const dialog = document.getElementById("dialog");
 
 
-// ================================
 // 時間帯に合うセリフをランダム選択
-// ================================
-
 function chooseConversation() {
 
     let candidates;
 
-    // 40%で時間帯
-    // 60%で雑談
-    if (Math.random() < 0.4) {
+    // 時間帯:雑談=6:4
+    if (Math.random() < 0.6) {
         candidates = getCurrentMessages();
     } else {
         candidates = commonMessages;
@@ -323,10 +291,7 @@ function getCurrentMessage() {
 }
 
 
-// ================================
 // タイプライター表示
-// ================================
-
 function startTyping() {
     clearTimeout(typingTimer);
 
@@ -353,6 +318,7 @@ function typeNextCharacter(currentMessage) {
     characterIndex++;
 
     let delay = typingSpeed;
+
 
     // 文末では少し長く止める
     if (
@@ -387,10 +353,7 @@ function finishTyping() {
 }
 
 
-// ================================
 // 次のページへ
-// ================================
-
 function moveToNextMessage() {
     pageIndex++;
 
@@ -403,25 +366,33 @@ function moveToNextMessage() {
 }
 
 
-// ================================
 // 起動
-// ================================
-
 if (!messageTextElement || !cursorElement || !nextButton) {
     console.error(
         "セリフ欄のHTMLが見つかりません。message-text、typing-cursor、nextのidを確認してください。"
     );
 } else {
-    nextButton.addEventListener("click", function () {
-        if (isTyping) {
-            // 入力途中なら全文を即表示
-            finishTyping();
-            return;
-        }
+   function nextDialogue() {
 
-        // 全文表示後なら次のページへ
-        moveToNextMessage();
-    });
+    if (isTyping) {
+        finishTyping();
+        return;
+    }
+
+    moveToNextMessage();
+
+}
+
+nextButton.addEventListener("click", nextDialogue);
+
+dialog.addEventListener("click", function (e) {
+
+    // ▶ボタンを押したときは二重に反応しない
+    if (e.target === nextButton) return;
+
+    nextDialogue();
+
+});
 
     chooseConversation();
     startTyping();
