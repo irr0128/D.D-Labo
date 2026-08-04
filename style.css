@@ -1,7 +1,9 @@
 body{
 
     margin:0;
-    background:rgb(23, 23, 23);
+    background-image:url(sky.jpg) ;
+    background-position:center;
+    background-size: 100% 100%;
     font-family:"DotGothic16",sans-serif;
     
     
@@ -45,7 +47,19 @@ button{
     text-align:center;
     margin:0;
 
-}
+    animation:float-character 3.2s ease-in-out infinite;}
+    @keyframes float-character{
+        0%{
+            transform:translateY(0);
+        }
+        50%{
+            transform:translateY(-20px);
+        }
+        100%{
+            transform:translateY(0);
+        }
+        
+        }
 
 .menu{
 
