@@ -746,10 +746,10 @@ button{
     }
 
     .character {
-    width: 360px;
-    height: 430px;
+    width: 1080px;
+    height: 1290px;
 
-    margin: 20px auto -110px;
+    margin: 40px auto -110px;
 
     display: flex;
     justify-content: center;
