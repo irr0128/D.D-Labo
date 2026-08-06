@@ -55,7 +55,10 @@ button{
     justify-content: center;
 
     z-index: 5;
+
+     animation: float-character 2.2s ease-in-out infinite;
 }
+
 
 /*.characterのみ浮遊*/
 .character-image {
@@ -68,8 +71,8 @@ button{
 
     user-select: none;
     pointer-events: none;
+    animation: character-glitch 5s steps(1) infinite;
 
-    animation: float-character 2.2s ease-in-out infinite;
 }
 
 @keyframes float-character {
@@ -83,6 +86,34 @@ button{
 
     100% {
         transform: translateY(0);
+    }
+}
+@keyframes character-glitch {
+    0%,
+    88%,
+    100% {
+        transform: translateX(0);
+        filter: none;
+    }
+
+    89% {
+        transform: translateX(-5px);
+        filter: contrast(1.12) saturate(1.1);
+    }
+
+    90% {
+        transform: translateX(5px);
+        filter: contrast(1.2) hue-rotate(7deg);
+    }
+
+    91% {
+        transform: translateX(-1px);
+        filter: contrast(1.08);
+    }
+
+    92% {
+        transform: translateX(0);
+        filter: none;
     }
 }
 
