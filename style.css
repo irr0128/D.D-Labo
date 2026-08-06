@@ -746,9 +746,22 @@ button{
     }
 
     .character {
-        font-size: 110px;
-        margin: 54px 0 40px;
-    }
+    width: 360px;
+    height: 430px;
+
+    margin: 20px auto -110px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.character-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
 
     .menu {
         grid-template-columns: repeat(2, 1fr);
