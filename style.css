@@ -806,7 +806,8 @@ button{
     }
 
     .character {
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
     height: 430px;
 
     margin: -10px auto -175px;
@@ -814,7 +815,8 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    left:-2px;
+
+    left:-3px;
 }
 
 .character-image {
