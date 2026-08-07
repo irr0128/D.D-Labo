@@ -824,8 +824,8 @@ button{
     object-fit: contain;
     flex-shrink: 0;
 
-    position:relative;
-    left:-6px;
+    position:relative !important;
+    left:-30px !important;
 }
 
 .level-meter {
