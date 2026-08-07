@@ -814,18 +814,18 @@ button{
 }
 
     .menu {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
     }
 
     .menu button {
         height: 62px;
-        font-size: 17px;
+        font-size: 14px;
+        min-width: 0;
     }
 
     .dialog {
         width: 100%;
-        height: 250px;
     }
 
     .dialog-titlebar {
@@ -844,10 +844,9 @@ button{
     }
 
     #message {
-        height: 170px;
         padding: 28px 24px 20px;
 
-        font-size: 25px;
+        font-size: 18px;
         line-height: 1.65;
     }
 
@@ -855,7 +854,7 @@ button{
         width: 34px;
         height: 30px;
         font-size: 15px;
-        font-family: "DotGothic16";
+        font-family: "DotGothic16", sans-serif;
 }
 
 /*青文字を解消*/
