@@ -473,7 +473,7 @@ button{
     content: "";
     position: absolute;
     inset: 1px;
-    
+
     background: var(--folder-color);
     clip-path: polygon(
         0 22%,
@@ -790,14 +790,14 @@ button{
     }
 
     .character {
-    width: 1080px;
-    height: 1290px;
+    width: 880px;
+    height: 1090px;
 
     margin: 40px auto -110px;
 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .character-image {
@@ -849,6 +849,7 @@ button{
         width: 34px;
         height: 30px;
         font-size: 15px;
+        font-family: "DotGothic16";
 }
 
 /*青文字を解消*/
