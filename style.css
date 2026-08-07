@@ -130,6 +130,10 @@ button{
 
     user-select: none;
     pointer-events: none;
+
+    position: relative;
+    left:-18px;
+
     animation: character-glitch 6s steps(1) infinite;
 
 }
@@ -823,9 +827,6 @@ button{
 
     object-fit: contain;
     flex-shrink: 0;
-
-    position:relative !important;
-    left:-30px !important;
 }
 
 .level-meter {
