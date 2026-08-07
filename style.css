@@ -815,16 +815,17 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    left:-3px;
 }
 
 .character-image {
-    width: 130%;
-    height: 130%;
+    width: 135%;
+    height: 135%;
 
     object-fit: contain;
     flex-shrink: 0;
+
+    position:relative;
+    left:-3px;
 }
 
 .level-meter {
