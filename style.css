@@ -1,10 +1,17 @@
+@font-face {
+    font-family: "BestTen";
+    src: url("./BestTen.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
 
     margin:0;
-    background-image:url(sky.jpg) ;
+    background-image:url(back.jpg) ;
     background-position:center;
     background-size: 100% 100%;
-    font-family:"DotGothic16",sans-serif;
+    font-family:"BestTen",sans-serif;
     
     
 }
@@ -25,7 +32,7 @@ button{
 
 .clock h1{
 
-    margin-bottom:-9px;
+    margin-bottom:2px;
     color:#f8f8f8;
     text-shadow:
     0 0 6px rgba(180, 220, 255, 0.35);
@@ -48,7 +55,7 @@ button{
     width: 320px;
     height: 430px;
 
-    margin: -10px auto -200px;
+    margin: -10px auto -165px;
 
     display: flex;
     align-items: center;
@@ -59,6 +66,58 @@ button{
      animation: float-character 2.2s ease-in-out infinite;
 }
 
+.signal-line {
+    position: absolute;
+
+    left: -10%;
+    top: 35%;
+
+    width: 120%;
+    height: 2px;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(80, 180, 255, 0.9),
+        rgba(255, 80, 200, 0.85),
+        rgba(120, 220, 255, 0.9),
+        transparent
+    );
+
+    box-shadow:
+        0 0 4px rgba(100, 180, 255, 0.8),
+        0 0 8px rgba(255, 80, 200, 0.45);
+
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.signal-line.is-active {
+    animation: signal-line-once 0.18s steps(1);
+}
+
+@keyframes signal-line-once {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px) scaleX(0.3);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateX(4px) scaleX(1);
+    }
+
+    65% {
+        opacity: 0.55;
+        transform: translateX(12px) scaleX(0.75);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(18px) scaleX(0.2);
+    }
+}
 
 /*.characterのみ浮遊*/
 .character-image {
@@ -71,7 +130,7 @@ button{
 
     user-select: none;
     pointer-events: none;
-    animation: character-glitch 5s steps(1) infinite;
+    animation: character-glitch 6s steps(1) infinite;
 
 }
 
@@ -118,19 +177,18 @@ button{
 }
 
 .menu{
-
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:14px;
+
     width:100%;
     margin-bottom: 28px;
     position:relative;
-    z-index:20;
 
+    z-index:20;
 }
 
 .menu button{
-
     width:90px;
     height:60px;
 
@@ -138,9 +196,7 @@ button{
     background:rgba(255, 255, 255, 0.82);
 
     border:1px solid gray;
-
     border-radius:10px;
-
     box-shadow:0 4px gray;
 
     cursor:pointer;
@@ -154,11 +210,8 @@ button{
 }
 
 .menu button:active{
-
     transform:translateY(4px);
-
     box-shadow:none;
-
 }
 
 .dialog {
@@ -172,10 +225,8 @@ button{
     background:rgba(245, 245, 245, 0.82);
     backdrop-filter: blue(2px);
 
-    border: 3px solid #c6c6c6;
-
+    border: 1px solid #c6c6c6;
     box-sizing: border-box;
-
     box-shadow:
         inset 2px 2px 0 #f9f9f9,
         inset -2px -2px 0 #777;
@@ -196,96 +247,73 @@ button{
     );
 
     position: relative;
-
     box-sizing: border-box;
 }
 
 /*右上次へボタン*/
 .next-button {
     position: absolute;
-
     top: 5px;
     right: 5px;
-
     width: 24px;
     height: 20px;
-
     padding: 0;
 
     background: #f2f2f2;
     border: 3px solid #d0d0d0;
-
     box-shadow:
         inset 2px 2px 0 #ffffff,
         inset -2px -2px 0 #777;
 
     font-size: 12px;
     line-height: 1;
-
     cursor: pointer;
+    font-family: "DotGothic16";
 }
 
 .next-button:active {
     box-shadow:
         inset 2px 2px 0 #777,
         inset -2px -2px 0 #ffffff;
-
     transform: translate(1px, 1px);
 }
 
 /*左上名前プレート*/
 .name{
-
     position:absolute;
-
     top:-12px;
     left: 10px;
-
     width: 60px;
     height:40px;
 
     background:#ebec8c;
-
-    border:2px solid #9e9fac;
-
+    border:1px solid #9e9fac;
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     padding-left:0;
-
     box-sizing:border-box;
 
-    font-size:20px;
-
+    font-size:18px;
 }
 
 /*セリフ本文*/
 #message {
     height: 190px;
-
     padding: 36px 56px 28px 56px;
 
     font-size: 18px;
     line-height: 1.7;
-
     box-sizing: border-box;
-
     overflow: hidden;
-
     background: transparent;
 }
 
 .name{
 
     background:#ebec8c;
-
-    width:120px;
-
-    padding:8px;
-
+    width:90px;
+    padding:7px;
     font-weight:bold;
 
 }
@@ -293,14 +321,10 @@ button{
 #message{
 
     padding:10px 26px;
-
     font-size: 18px;
-
     line-height:1.7;
-
     overflow-wrap:anywhere;
-
-    font-family:"DotGothic16",sans-serif;
+    font-family:"BestTen",sans-serif;
 
 }
 
@@ -310,10 +334,8 @@ button{
     width:3px;
     height:1.15em;
     margin-left:3px;
-
     background:black;
     vertical-align:-0.15em;
-
     animation:cursor-blink 0.7s steps(1) infinite;
 
 }
@@ -346,11 +368,9 @@ button{
     position: absolute;
     top: 20px;
     right: 20px;
-
     display: flex;
     flex-direction: column;
     gap: 16px;
-
     z-index: 50;
 }
 
@@ -371,7 +391,7 @@ button{
     border: 0;
     background: transparent;
 
-    font-family: "DotGothic16", sans-serif;
+    font-family: "BestTen", sans-serif;
 
     cursor: pointer;
 
@@ -415,16 +435,13 @@ button{
 /*中の白い紙*/
 .folder-paper {
     position: absolute;
-
     top: 4px;
     left: 8px;
-
     width: 50px;
     height: 40px;
 
     background: #f5f5f5;
     border: 1px solid #9b9b9b;
-
     box-sizing: border-box;
 
     z-index: 2;
@@ -433,14 +450,12 @@ button{
 /*フォルダ内側の輪郭*/
 .folder-fill {
     position: absolute;
-
     top: 0.3px;
     right: 0.3px;
     bottom: 0.3px;
     left: 0.3px;
 
     background: #8e8e8e;
-
     clip-path: polygon(
         0 22%,
         45% 22%,
@@ -456,12 +471,10 @@ button{
 /*内側の色面*/
 .folder-fill::before {
     content: "";
-
     position: absolute;
     inset: 1px;
-
+    
     background: var(--folder-color);
-
     clip-path: polygon(
         0 22%,
         45% 22%,
@@ -569,7 +582,7 @@ button{
     align-items: center;
     justify-content: center;
 
-    font-family: "DotGothic16", sans-serif;
+    font-family: "BestTen", sans-serif;
     color: #111;
 
     cursor: pointer;
@@ -748,7 +761,7 @@ button{
 .level-label {
     margin-top: 5px;
 
-    font-family: "DotGothic16", sans-serif;
+    font-family: "BestTen", sans-serif;
     font-size: 15px;
     line-height: 1;
 

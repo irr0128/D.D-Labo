@@ -1,6 +1,6 @@
 "use strict";
 
-// 時計と日付
+//時計と日付
 function updateClock() {
     const now = new Date();
 
@@ -28,7 +28,7 @@ updateClock();
 setInterval(updateClock, 1000);
 
 
-// 時間帯別セリフ
+//時間帯別
 const morningMessages = [
     [
         "おはようございます。よく来てくださいました。",
@@ -136,6 +136,7 @@ const midnightMessages = [
     ]
 ];
 
+//共通
 const commonMessages = [
     [
         "昨日、ペンを冷蔵庫にしまってしまいました。人間の脳とは実に興味深い。……私も人間なのですが。"
@@ -206,38 +207,118 @@ const commonMessages = [
     ]
 ];
 
+//曜日別
+const sundayMessages = [
+    [
+        "日曜日ですね。一週間の端に見えますが、実際には次の週への入口でもあります。"
+    ],
+    [
+        "日曜日です。静かな終わりと、新しい始まりの間。境界というものには、いつも少し寂しさがあります。"
+    ]
+];
 
-// 現在の時間帯を判定
+const mondayMessages = [
+    [
+        "今日は月曜日ですね。不思議な曜日です。まだ何も失敗していないのに、すでに疲れている人がいる。",
+        "未来の疲労を先払いしているのでしょうか。人間とは面白い生き物ですね。"
+    ]
+];
+
+const tuesdayMessages = [
+    [
+        "火曜日は目立ちません。だからこそ、静かに物事を進めるには向いています。"
+    ],
+    [
+        "火曜日には独特の静けさがあります。始まりの緊張も薄れ、終わりへの期待もまだ遠い。研究には向いている日かもしれません。"
+    ]
+];
+
+const wednesdayMessages = [
+    [
+        "水曜日。ちょうど真ん中です。中間地点というのは、安心にも不安にもなりますね。"
+    ],
+    [
+        "水曜日は面白いですね。前半でも後半でもない。どちらにも所属しきれない。私はそういう存在に少し親近感があります。"
+    ]
+];
+
+const thursdayMessages = [
+    [
+        "今日は木曜日ですね。火曜日ほど気負わず、金曜日ほど浮つかない。曜日の中では一番誠実だと思っています。"
+    ]
+];
+
+const fridayMessages = [
+    [
+        "金曜日ですね。人間はこの曜日に、少しだけ未来を信じやすくなるようです。"
+    ],
+    [
+        "金曜日は少し騒がしいですね。しかし、楽しみにしているものがある状態は悪くない。希望というのは、案外便利な燃料です。"
+    ]
+];
+
+const saturdayMessages = [
+    [
+        "土曜日は自由そうに見えます。ですが自由というものは、使い方を決めないとすぐ蒸発するものなのです……。"
+    ],
+    [
+        "今日は土曜日。時間の流れが少し緩む日ですね。"
+    ]
+];
+
+//判定
 function getCurrentMessages() {
     const now = new Date();
     const time = now.getHours() * 60 + now.getMinutes();
 
-    // 朝 4:00～11:59
+    //朝 4:00～11:59
     if (time >= 240 && time <= 719) {
         return morningMessages;
     }
 
-    // 昼 12:00～15:29
+    //昼 12:00～15:29
     if (time >= 720 && time <= 929) {
         return noonMessages;
     }
 
-    // 夕方 15:30～18:00
+    //夕方 15:30～18:00
     if (time >= 930 && time <= 1080) {
         return eveningMessages;
     }
 
-    // 夜 18:01～23:59
+    //夜 18:01～23:59
     if (time >= 1081 && time <= 1439) {
         return nightMessages;
     }
 
-    // 深夜 0:00～3:59
+    //深夜 0:00～3:59
     return midnightMessages;
 }
 
+function getCurrentDayMessages() {
+    const day = new Date().getDay();
 
-// セリフ表示の状態
+    switch (day) {
+        case 0:
+            return sundayMessages;
+        case 1:
+            return mondayMessages;
+        case 2:
+            return tuesdayMessages;
+        case 3:
+            return wednesdayMessages;
+        case 4:
+            return thursdayMessages;
+        case 5:
+            return fridayMessages;
+        case 6:
+            return saturdayMessages;
+        default:
+            return commonMessages;
+    }
+}
+
+//セリフ表示の状態
 let currentConversation = [];
 let lastConversation = null;
 let pageIndex = 0;
@@ -246,23 +327,35 @@ let characterIndex = 0;
 let isTyping = false;
 let typingTimer = null;
 
-// 小さいほど速い
+//小さいほど速い
 const typingSpeed = 45;
 
 const messageTextElement = document.getElementById("message-text");
 const cursorElement = document.getElementById("typing-cursor");
 const nextButton = document.getElementById("next");
+
+const characterImageElement =
+    document.getElementById("character-image");
+
+const idleCharacterSrc = "nomal.gif";
+const talkingCharacterSrc = "talk.gif";
+
 const dialog = document.getElementById("dialog");
 
-
-// 時間帯に合うセリフをランダム選択
 function chooseConversation() {
+    const randomValue = Math.random();
 
     let candidates;
 
-    // 時間帯:雑談=6:4
-    if (Math.random() < 0.6) {
+    //45%：時間帯
+    if (randomValue < 0.45) {
         candidates = getCurrentMessages();
+
+    //20%：曜日
+    } else if (randomValue < 0.65) {
+        candidates = getCurrentDayMessages();
+
+    //45%共通
     } else {
         candidates = commonMessages;
     }
@@ -270,18 +363,15 @@ function chooseConversation() {
     let selected;
 
     do {
-
         selected = candidates[
             Math.floor(Math.random() * candidates.length)
         ];
-
     } while (
         candidates.length > 1 &&
         selected === lastConversation
     );
 
     lastConversation = selected;
-
     currentConversation = selected;
     pageIndex = 0;
 }
@@ -290,8 +380,28 @@ function getCurrentMessage() {
     return currentConversation[pageIndex];
 }
 
+const signalLine = document.querySelector(".signal-line");
 
-// タイプライター表示
+function flashSignalLine() {
+    if (!signalLine) return;
+
+    const randomTop = Math.floor(Math.random() * 65) + 15;
+
+    signalLine.style.top = `${randomTop}%`;
+    signalLine.classList.remove("is-active");
+
+    void signalLine.offsetWidth;
+
+    signalLine.classList.add("is-active");
+
+    const nextDelay = Math.floor(Math.random() * 3000) + 3500;
+
+    setTimeout(flashSignalLine, nextDelay);
+}
+
+flashSignalLine();
+
+//タイプライター表示
 function startTyping() {
     clearTimeout(typingTimer);
 
@@ -302,6 +412,11 @@ function startTyping() {
 
     messageTextElement.textContent = "";
     cursorElement.classList.remove("hidden");
+
+    //talk.gifへ変更
+    if (characterImageElement) {
+        characterImageElement.src = talkingCharacterSrc;
+    }
 
     typeNextCharacter(currentMessage);
 }
@@ -319,8 +434,7 @@ function typeNextCharacter(currentMessage) {
 
     let delay = typingSpeed;
 
-
-    // 文末では少し長く止める
+    //文末では少し長く止める
     if (
         currentCharacter === "。" ||
         currentCharacter === "！" ||
@@ -350,14 +464,17 @@ function finishTyping() {
     isTyping = false;
 
     cursorElement.classList.add("hidden");
+
+    //通常GIFへ戻す
+    if (characterImageElement) {
+        characterImageElement.src = idleCharacterSrc;
+    }
 }
 
-
-// 次のページへ
+//次のページへ
 function moveToNextMessage() {
     pageIndex++;
 
-    // 今のひとまとまりを最後まで読んだ
     if (pageIndex >= currentConversation.length) {
         chooseConversation();
     }
@@ -366,7 +483,7 @@ function moveToNextMessage() {
 }
 
 
-// 起動
+//起動
 if (!messageTextElement || !cursorElement || !nextButton) {
     console.error(
         "セリフ欄のHTMLが見つかりません。message-text、typing-cursor、nextのidを確認してください。"
@@ -387,7 +504,7 @@ nextButton.addEventListener("click", nextDialogue);
 
 dialog.addEventListener("click", function (e) {
 
-    // ▶ボタンを押したときは二重に反応しない
+    //▶ボタンを押した際二重に反応しない
     if (e.target === nextButton) return;
 
     nextDialogue();
