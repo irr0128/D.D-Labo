@@ -776,6 +776,10 @@ button{
         overflow-x: hidden;
     }
 
+    .side-actions{
+        gap:5px;
+    }
+
     .container {
         width: 92vw;
         max-width:600px;
@@ -792,12 +796,12 @@ button{
     }
 
     .clock p {
-        font-size: 10px;
+        font-size: 15px;
     }
 
     .character {
-    width: 420px;
-    height: 530px;
+    width: 320px;
+    height: 430px;
 
     margin: -10px auto -175px;
 
@@ -830,9 +834,10 @@ button{
     }
 
     .dialog {
-        width: 110%;
+        width: 115%;
+        left:50%;
         transform: scale(0.9);
-        transform-origin: top center;
+        transform: translateX(-50%);
     }
 
     .dialog-titlebar {
