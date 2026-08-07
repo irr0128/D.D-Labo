@@ -778,8 +778,14 @@ button{
 
     .container {
         width: 92vw;
-        padding-top: 18px;
+        max-width:600px;
+
+        padding: 20px;
+        margin:0 auto;
+
+        box-sizing:border-box;
     }
+
 
     .clock h1 {
         font-size: 42px;
@@ -790,10 +796,10 @@ button{
     }
 
     .character {
-    width: 880px;
-    height: 1090px;
+    width: 320px;
+    height: 430px;
 
-    margin: 40px auto -110px;
+    margin: -10px auto -165px;
 
     display: flex;
     justify-content: center;
@@ -866,35 +872,5 @@ button {
 a {
     color: inherit;
     text-decoration: none;
-}
-
-
-@media (max-width: 500px) {
-
-    html,
-    body {
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-    .container {
-        /* PC版の大きさを維持 */
-        width: 600px;
-        padding: 20px;
-        margin: 0;
-
-        /* 全体を同じ比率で縮小 */
-        transform: scale(0.58);
-        transform-origin: top left;
-
-        /* 縮小後の横幅をスマホ中央に置く */
-        position: relative;
-        left: 50%;
-        margin-left: -185.6px;
-    }
 }
 }
