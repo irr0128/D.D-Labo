@@ -817,8 +817,8 @@ button{
 }
 
 .character-image {
-    width: 125%;
-    height: 125%;
+    width: 130%;
+    height: 130%;
 
     object-fit: contain;
     flex-shrink: 0;
@@ -841,7 +841,7 @@ button{
     }
 
     .dialog {
-        width: 115%;
+        width: 100%;
         left:50%;
         transform: scale(0.9);
         transform: translateX(-50%);
@@ -891,7 +891,7 @@ button{
 }
 
     #message {
-        padding: 8px 24px 20px;
+        padding: 10px 24px 20px;
 
         font-size: 16px;
         line-height: 1.65;
