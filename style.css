@@ -788,11 +788,11 @@ button{
 
 
     .clock h1 {
-        font-size: 42px;
+        font-size: 32px;
     }
 
     .clock p {
-        font-size: 15px;
+        font-size: 12px;
     }
 
     .character {
@@ -833,6 +833,11 @@ button{
         height: 38px;
     }
 
+    .folder-button  {
+    transform: scale(0.8);
+    transform-origin: top right;
+}
+
     .name {
         top: -20px;
         left: 18px;
@@ -843,8 +848,18 @@ button{
         font-size: 21px;
     }
 
+    .level-meter {
+    transform: scale(0.8);
+    transform-origin: top right;
+}
+
+.profile-note {
+    transform: scale(0.8);
+    transform-origin: top left;
+}
+
     #message {
-        padding: 28px 24px 20px;
+        padding: 12px 24px 20px;
 
         font-size: 18px;
         line-height: 1.65;
